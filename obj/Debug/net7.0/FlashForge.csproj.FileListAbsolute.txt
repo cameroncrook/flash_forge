@@ -1,0 +1,14 @@
+/Users/cameroncrook/Documents/personal_projects/FlashForge/bin/Debug/net7.0/FlashForge
+/Users/cameroncrook/Documents/personal_projects/FlashForge/bin/Debug/net7.0/FlashForge.deps.json
+/Users/cameroncrook/Documents/personal_projects/FlashForge/bin/Debug/net7.0/FlashForge.runtimeconfig.json
+/Users/cameroncrook/Documents/personal_projects/FlashForge/bin/Debug/net7.0/FlashForge.dll
+/Users/cameroncrook/Documents/personal_projects/FlashForge/bin/Debug/net7.0/FlashForge.pdb
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/FlashForge.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/FlashForge.AssemblyInfoInputs.cache
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/FlashForge.AssemblyInfo.cs
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/FlashForge.csproj.CoreCompileInputs.cache
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/FlashForge.dll
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/refint/FlashForge.dll
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/FlashForge.pdb
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/FlashForge.genruntimeconfig.cache
+/Users/cameroncrook/Documents/personal_projects/FlashForge/obj/Debug/net7.0/ref/FlashForge.dll
