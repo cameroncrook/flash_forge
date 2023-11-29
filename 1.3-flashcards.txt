@@ -1,0 +1,28 @@
+Privilege escalation;The act of gaining unauthorized access or privileges on a computer system, typically by exploiting vulnerabilities, to obtain higher levels of access or control.
+Cross-site scripting;A type of web vulnerability where malicious scripts are injected into web pages viewed by other users, often leading to the theft of sensitive data or unauthorized actions on the user's behalf.
+Injections;A class of attacks that involve injecting malicious code or data into a system, such as SQL injection (exploiting weaknesses in SQL queries) or code injection (inserting malicious code into a program).
+Structured query language (SQL);A domain-specific language used for managing and querying relational databases. In attacks, it can be used to manipulate data.
+Dynamic-link library (DLL);A file containing code and data that can be used by multiple programs simultaneously, typically in the Windows operating system. Often used for user authentication.
+Lightweight Directory;A protocol used for accessing and managing directory services, often employed for user authentication and directory queries.
+Extensible Markup Language (XML);A markup language used for encoding structured data in a human-readable format.
+Pointer/object dereference;The process of accessing or manipulating data through a memory pointer or object reference, which can lead to vulnerabilities if not done securely. When a hacker manipulates
+Directory traversal;An attack where an attacker attempts to access files or directories outside the intended scope of a web application.
+Buffer overflows;A type of vulnerability where an attacker overruns a program's buffer, potentially leading to unauthorized code execution.
+Race conditions;Security vulnerabilities that occur when the outcome of a program depends on the relative timing of events.
+Time of check/time of use;A security issue where a resource's status is checked at one point in time but then used later, potentially allowing an attacker to manipulate the resource in between.
+Error handling;The process of managing and responding to errors and exceptions in software to prevent security vulnerabilities.
+Improper input handling;Security weaknesses that result from inadequate validation or handling of user inputs, potentially leading to vulnerabilities like injection attacks.
+Replay attack;A type of attack where an attacker intercepts and retransmits data packets to gain unauthorized access or perform actions on behalf of a legitimate user.
+Session replays;An attack where an attacker captures and replays a user's session data to impersonate the user or gain unauthorized access.
+Integer overflow;A vulnerability that occurs when an arithmetic operation on an integer results in a value too large to be represented, potentially leading to unexpected behavior.
+Request forgeries;Attacks where an attacker tricks a user into making an unintended request to a web application, often resulting in unauthorized actions.
+Server-side;Refers to actions or processes that occur on the server, as opposed to client-side activities in web applications.
+Cross-site;Indicates interactions or vulnerabilities that involve communication between different websites or domains.
+Application programming;The process of writing, testing, and maintaining software applications.
+Resource exhaustion;An attack that consumes a system's resources (e.g., CPU, memory) to the point of causing system slowdown or unavailability.
+Memory leak;A programming issue where a program fails to release memory it no longer needs, potentially leading to performance problems or crashes.
+Secure Sockets Layer (SSL) stripping;An attack where an attacker downgrades a secure connection to an insecure one, making it easier to intercept or manipulate data.
+Driver manipulation;Unauthorized changes or exploitation of hardware drivers in an operating system.
+Shimming;technique used to intercept and modify system calls or API calls in software, often for compatibility or malicious purposes.
+Refactoring;The process of restructuring existing code to improve its readability, maintainability, or security.
+Pass the hash;An attack where an attacker captures and reuses hashed password values to gain unauthorized access.

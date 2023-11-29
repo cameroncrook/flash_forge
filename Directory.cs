@@ -1,9 +1,10 @@
-public abstract class Directory
+public class Directory
 {
     private string _name;
-    private Directory _parentDirectory;
+    private Folder _parentDirectory;
+    private string _type;
 
-    public Directory(string name, Directory parent)
+    public Directory(string name, Folder parent)
     {
         _name = name;
         _parentDirectory = parent;
@@ -14,5 +15,8 @@ public abstract class Directory
         return _name;
     }
 
-    public abstract void DisplayContents(int startingIndex);
+    public Folder GetParent()
+    {
+        return _parentDirectory;
+    }
 }
