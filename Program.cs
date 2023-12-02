@@ -27,12 +27,12 @@ class Program
                 activeDirectory.DisplayContents(6);
 
                 Console.Write("\nOption: ");
-                int response = int.Parse(Console.ReadLine());
+                int response = int.Parse(Console.ReadLine()!);
 
                 if (response == 1)
                 {
                     Console.Write("Folder name: ");
-                    string folderName = Console.ReadLine();
+                    string folderName = Console.ReadLine()!;
 
                     if (!string.IsNullOrEmpty(folderName))
                     {
@@ -45,7 +45,7 @@ class Program
                 else if (response == 2)
                 {
                     Console.Write("Set name: ");
-                    string setName = Console.ReadLine();
+                    string setName = Console.ReadLine()!;
 
                     if (!string.IsNullOrEmpty(setName))
                     {
@@ -59,7 +59,7 @@ class Program
                 {
                     activeDirectory.DisplayDirectories();
                     Console.Write("\nFolder to delete: ");
-                    int index = int.Parse(Console.ReadLine()) - 1;
+                    int index = int.Parse(Console.ReadLine()!) - 1;
 
                     activeDirectory.RemoveFolder(index);
                 }
@@ -67,7 +67,7 @@ class Program
                 {
                     activeDirectory.DisplayStudySets();
                     Console.Write("\nSet to delete: ");
-                    int index = int.Parse(Console.ReadLine()) - 1;
+                    int index = int.Parse(Console.ReadLine()!) - 1;
 
                     activeDirectory.RemoveSet(index);
                 }
@@ -86,6 +86,7 @@ class Program
                 }
                 else if (response > 5)
                 {
+                    // Change directories
                     int index = response - 5;
 
                     if (index > activeDirectory.GetDirectoryCount())
@@ -107,23 +108,83 @@ class Program
                 Console.WriteLine("1. Study");
                 Console.WriteLine("2. Upload from notes");
                 Console.WriteLine("3. Add term");
-                Console.WriteLine("4. Edit term");
-                Console.WriteLine("5. Delete term");
-                Console.WriteLine("6. Display terms");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("4. Delete term");
+                Console.WriteLine("5. Display terms");
+                Console.WriteLine("6. Exit");
 
                 Console.Write("\nOption: ");
-                int response = int.Parse(Console.ReadLine());
+                int response = int.Parse(Console.ReadLine()!);
 
-                if (response == 2)
+                if (response == 1)
+                {
+                    Console.WriteLine("\nSelect a study activity:");
+                    Console.WriteLine("1. Flashcards");
+                    Console.WriteLine("2. Write");
+                    Console.WriteLine("3. Multiple Choice");
+                    Console.WriteLine("4. Timed Challenge");
+                    Console.WriteLine("5. Test");
+                    Console.WriteLine("6. Exit");
+
+                    Console.Write("\nSelect an option: ");
+                    string studyOption = Console.ReadLine()!;
+
+                    if (studyOption == "1")
+                    {
+                        // Flashcard flashcard = new Flashcard(activeSet);
+                        // Dictionary<string, bool> results = flashcard.PlaySession();
+                        Console.Write("Need to build");
+                    }
+                    else if (studyOption == "2")
+                    {
+                        Console.Write("Need to build");
+                    }
+                    else if (studyOption == "3")
+                    {
+                        Console.Write("Need to build");
+                    }
+                    else if (studyOption == "4")
+                    {
+                        Console.Write("Need to build");
+                    }
+                    else if (studyOption == "5")
+                    {
+                        Console.Write("Need to build");
+                    }
+                    else if (studyOption == "6")
+                    {
+                        continue;
+                    }
+                }
+                else if (response == 2)
                 {
                     activeSet.UploadNotes();
                 }
-                else if (response == 6)
+                else if (response == 3)
+                {
+                    Console.Write("\nTerm: ");
+                    string term = Console.ReadLine()!;
+
+                    Console.Write("\nDefinition: ");
+                    string definition = Console.ReadLine()!;
+
+                    activeSet.AddTerm(term, definition);
+                }
+                else if (response == 4)
                 {
                     activeSet.DisplayTerms(1);
+
+                    Console.Write("Term to delete [e.g. 4]: ");
+                    int removeIndex = int.Parse(Console.ReadLine()!);
+
+                    activeSet.RemoveTerm(removeIndex - 1);
                 }
-                else if (response == 7)
+                else if (response == 5)
+                {
+                    activeSet.DisplayTerms(1);
+
+                    string wait = Console.ReadLine()!;
+                }
+                else if (response == 6)
                 {
                     activeSet = null;
                 }

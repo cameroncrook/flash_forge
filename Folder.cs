@@ -23,7 +23,7 @@ public class Folder : Directory
         {
             _directories.RemoveAt(index);
         }
-        catch (IndexOutOfRangeException err)
+        catch (IndexOutOfRangeException)
         {
             Console.WriteLine("Invalid answer.");
         }
@@ -42,7 +42,7 @@ public class Folder : Directory
         {
             _sets.RemoveAt(index);
         }
-        catch (IndexOutOfRangeException err)
+        catch (IndexOutOfRangeException)
         {
             Console.WriteLine("Invalid answer.");
         }

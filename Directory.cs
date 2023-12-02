@@ -2,7 +2,6 @@ public class Directory
 {
     private string _name;
     private Folder _parentDirectory;
-    private string _type;
 
     public Directory(string name, Folder parent)
     {
