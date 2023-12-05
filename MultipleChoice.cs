@@ -4,14 +4,14 @@ public class MultipleChoice : Activity
         : base(studySet)
     {}
 
-    public override bool StudyTerm(string term)
+    public override bool StudyTerm(string term, bool showResults=true)
     {
         (string, string) displayAnswer = base.GetDisplayAnswer(term);
 
         Console.WriteLine(displayAnswer.Item1);
 
         List<string> terms = base.GetRandomTerms();
-        terms.Add(displayAnswer.Item1);
+        terms.Add(term);
 
         // Get multiple choice options
         Dictionary<char, string> groupOfAnswer = new Dictionary<char, string>();
@@ -37,18 +37,24 @@ public class MultipleChoice : Activity
 
         if (groupOfAnswer[response] == displayAnswer.Item2)
         {
-            Console.WriteLine("\nCORRECT!");
+            if (showResults)
+            {
+                Console.WriteLine("\nCORRECT!");
 
-            string pause = Console.ReadLine()!;
+                string pause = Console.ReadLine()!;
+            }
             return true;
         }
         else
         {
-            Console.WriteLine("Wrong");
-            Console.WriteLine("\nThe correct answer is:");
-            Console.WriteLine(displayAnswer.Item2);
-
-            string pause = Console.ReadLine()!;
+            if (showResults)
+            {
+                Console.WriteLine("Wrong");
+                Console.WriteLine("\nThe correct answer is:");
+                Console.WriteLine(displayAnswer.Item2);
+            
+                string pause = Console.ReadLine()!;
+            }
             return false;
         }
     }
@@ -60,6 +66,7 @@ public class MultipleChoice : Activity
 
         for(int i=0; i < studyTerms.Count; i++)
         {
+            Console.Clear();
             Console.WriteLine($"{i+1}/{studyTerms.Count}\n");
 
             bool studyResult = StudyTerm(studyTerms[i]);

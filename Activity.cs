@@ -7,7 +7,7 @@ public abstract class Activity
         _studySet = studySet;
     }
 
-    public abstract bool StudyTerm(string term);
+    public abstract bool StudyTerm(string term, bool showResults);
 
     public abstract Dictionary<string, bool> PlaySession();
 
@@ -29,65 +29,68 @@ public abstract class Activity
         int masteredCount = 0;
 
         (List<string>, List<string>, List<string>) categories = _studySet.GetClassifications();
+        List<string> unknown = new List<string>(categories.Item1);
+        List<string> learning = new List<string>(categories.Item2);
+        List<string> mastered = new List<string>(categories.Item3);
 
         do
         {
-            if (unknownCount < unknownReq && categories.Item1.Count > 0)
+            if (unknownCount < unknownReq && unknown.Count > 0)
             {
-                string term = GetRandomCategory(categories.Item1);
+                string term = GetRandomCategory(unknown);
 
                 studyTerms.Add(term);
-                categories.Item1.Remove(term);
+                unknown.Remove(term);
 
                 unknownCount++;
             }
-            else if (learningCount < learningReq && categories.Item2.Count > 0)
+            else if (learningCount < learningReq && learning.Count > 0)
             {
-                string term = GetRandomCategory(categories.Item2);
+                string term = GetRandomCategory(learning);
                 studyTerms.Add(term);
-                categories.Item2.Remove(term);
+                learning.Remove(term);
 
                 learningCount++;
             }
-            else if (masteredCount < masteredReq && categories.Item3.Count > 0)
+            else if (masteredCount < masteredReq && mastered.Count > 0)
             {
-                string term = GetRandomCategory(categories.Item3);
+                string term = GetRandomCategory(mastered);
 
                 studyTerms.Add(term);
-                categories.Item3.Remove(term);
+                mastered.Remove(term);
 
                 masteredCount++;
             }
             else
             {
                 // Default to unknown, then to learning, then to mastered
-                if (categories.Item1.Count > 0)
+                if (unknown.Count > 0)
                 {
-                    string term = GetRandomCategory(categories.Item1);
+                    string term = GetRandomCategory(unknown);
 
                     studyTerms.Add(term);
-                    categories.Item1.Remove(term);
+                    unknown.Remove(term);
                 }
-                else if (categories.Item2.Count > 0)
+                else if (learning.Count > 0)
                 {
-                    string term = GetRandomCategory(categories.Item2);
+                    string term = GetRandomCategory(learning);
 
                     studyTerms.Add(term);
-                    categories.Item2.Remove(term);
+                    learning.Remove(term);
                 }
-                else if (categories.Item2.Count > 0)
+                else if (mastered.Count > 0)
                 {
-                    string term = GetRandomCategory(categories.Item3);
+                    string term = GetRandomCategory(mastered);
 
                     studyTerms.Add(term);
-                    categories.Item3.Remove(term);
+                    mastered.Remove(term);
                 }
                 else
                 {
                     break;
                 }
             }
-        } while (studyTerms.Count < size || (categories.Item1.Count < 1 && categories.Item2.Count < 1 && categories.Item3.Count < 1));
+        } while (studyTerms.Count < size || (unknown.Count < 1 && learning.Count < 1 && mastered.Count < 1));
 
         return studyTerms;
     }
@@ -112,13 +115,13 @@ public abstract class Activity
 
         if (answerWithTerm)
         {
-            display = term;
-            answer = definition;
+            display = definition;
+            answer = term;
         }
         else
         {
-            display = definition;
-            answer = term;
+            display = term;
+            answer = definition;
         }
 
         return (display, answer);
@@ -127,5 +130,10 @@ public abstract class Activity
     public List<string> GetRandomTerms()
     {
         return _studySet.GetRandomTerms(3);
+    }
+
+    public StudySet ShareSet()
+    {
+        return _studySet;
     }
 }

@@ -1,5 +1,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
+using System;
+using System.IO;
 
 public class StudySet : Directory
 {
@@ -62,7 +64,11 @@ public class StudySet : Directory
         Console.Write("Filename: ");
         string filename = Console.ReadLine()!;
 
-        using (StreamReader reader = new StreamReader(filename))
+        string currentDirectory = System.IO.Directory.GetCurrentDirectory();
+        string relativePath = $"upload/{filename}";
+        string filePath = Path.Combine(currentDirectory, relativePath);
+
+        using (StreamReader reader = new StreamReader(filePath))
         {
             string content = reader.ReadToEnd();
 
@@ -83,48 +89,57 @@ public class StudySet : Directory
         Console.WriteLine("Load complete.");
     }
 
-    public void AddtoMastered(string term)
+    public string UncatagorizeTerm(string term)
     {
-        _mastered.Add(term);
-
-        return;
-    }
-
-    public void AddtoLearning(string term)
-    {
-        _stillLearning.Add(term);
-
-        return;
-    }
-
-    public void AddtoUnknown(string term)
-    {
-        _unkown.Add(term);
-
-        return;
-    }
-
-    public void UncatagorizeTerm(string term)
-    {
+        string category = "";
         if (_unkown.Contains(term))
         {
             _unkown.Remove(term);
+            category = "unknown";
         }
         else if (_stillLearning.Contains(term))
         {
             _stillLearning.Remove(term);
+            category = "stillLearning";
         }
         else if (_mastered.Contains(term))
         {
             _mastered.Remove(term);
+            category = "mastered";
         }
 
-        return;
+        return category;
     }
 
     public void UpdateTermClassifactions(Dictionary<string, bool> termResults)
     {
-        
+        foreach(KeyValuePair<string, bool> result in termResults)
+        {
+            string previousCategory = UncatagorizeTerm(result.Key);
+
+            if (result.Value == true)
+            {
+                if (previousCategory == "unknown")
+                {
+                    _stillLearning.Add(result.Key);
+                }
+                else if (previousCategory == "stillLearning" || previousCategory == "mastered")
+                {
+                    _mastered.Add(result.Key);
+                }
+            }
+            else if (result.Value == false)
+            {
+                if (previousCategory == "unknown")
+                {
+                    _unkown.Add(result.Key);
+                }
+                else if (previousCategory == "mastered")
+                {
+                    _stillLearning.Add(result.Key);
+                }
+            }
+        }
     }
 
     public (List<string>, List<string>, List<string>) GetClassifications()
@@ -144,10 +159,17 @@ public class StudySet : Directory
         return _answerWithTerm;
     }
 
-    public List<string> GetRandomTerms(int quantity=1)
+    public void UpdateStudySetting(bool setting)
+    {
+        _answerWithTerm = setting;
+
+        return;
+    }
+
+    public List<string> GetRandomTerms(int quantity=3)
     {
         ICollection<string> dictKeys = _studyItems.Keys;
-        List<string> keys = dictKeys.ToList();
+        List<string> keys = new List<string>(dictKeys.ToList());
         List<string> terms = new List<string>();
 
         for(int i=0; i < quantity; i++)
@@ -157,8 +179,23 @@ public class StudySet : Directory
             int index = random.Next(keys.Count);
 
             terms.Add(keys[index]);
+            keys.RemoveAt(index);
         }
 
         return terms;
+    }
+
+    public void DisplayClassification()
+    {
+        Console.WriteLine("\nUnknown:");
+        Console.WriteLine(string.Join(" | ", _unkown));
+
+        Console.WriteLine("\nStill Learning:");
+        Console.WriteLine(string.Join(" | ", _stillLearning));
+
+        Console.WriteLine("\nMastered:");
+        Console.WriteLine(string.Join(" | ", _mastered));
+
+        return;
     }
 }

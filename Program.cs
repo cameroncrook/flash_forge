@@ -8,6 +8,7 @@ class Program
 
         Folder activeDirectory = home;
         StudySet activeSet = null;
+        bool isStudyingSet = false;
 
         bool isLearning = true;
         do
@@ -104,89 +105,135 @@ class Program
             }
             else
             {
-                Console.WriteLine("\nSelect an option:");
-                Console.WriteLine("1. Study");
-                Console.WriteLine("2. Upload from notes");
-                Console.WriteLine("3. Add term");
-                Console.WriteLine("4. Delete term");
-                Console.WriteLine("5. Display terms");
-                Console.WriteLine("6. Exit");
-
-                Console.Write("\nOption: ");
-                int response = int.Parse(Console.ReadLine()!);
-
-                if (response == 1)
+                if (isStudyingSet)
                 {
                     Console.WriteLine("\nSelect a study activity:");
                     Console.WriteLine("1. Flashcards");
                     Console.WriteLine("2. Write");
                     Console.WriteLine("3. Multiple Choice");
-                    Console.WriteLine("4. Timed Challenge");
-                    Console.WriteLine("5. Test");
+                    Console.WriteLine("4. Test");
+                    Console.WriteLine("5. View progress");
                     Console.WriteLine("6. Exit");
+
+
+                    // settings
+                    bool studySetting = activeSet.GetStudySetting();
+                    string setting = "";
+                    if (studySetting)
+                    {
+                        setting = "TERM";
+                    }
+                    else
+                    {
+                        setting = "DEFINITION";
+                    }
+                    Console.WriteLine("\nSETTINGS:");
+                    Console.WriteLine($"7. Answer with: {setting}");
 
                     Console.Write("\nSelect an option: ");
                     string studyOption = Console.ReadLine()!;
 
                     if (studyOption == "1")
                     {
-                        // Flashcard flashcard = new Flashcard(activeSet);
-                        // Dictionary<string, bool> results = flashcard.PlaySession();
-                        Console.Write("Need to build");
+                        Flashcard flashcard = new Flashcard(activeSet);
+                        Dictionary<string, bool> results = flashcard.PlaySession();
+
+                        activeSet.UpdateTermClassifactions(results);
                     }
                     else if (studyOption == "2")
                     {
-                        Console.Write("Need to build");
+                        Write write = new Write(activeSet);
+                        Dictionary<string, bool> results = write.PlaySession();
+
+                        activeSet.UpdateTermClassifactions(results);
                     }
                     else if (studyOption == "3")
                     {
-                        Console.Write("Need to build");
+                        MultipleChoice multipleChoice = new MultipleChoice(activeSet);
+                        Dictionary<string, bool> results = multipleChoice.PlaySession();
+
+                        activeSet.UpdateTermClassifactions(results);
                     }
                     else if (studyOption == "4")
                     {
-                        Console.Write("Need to build");
+                        Console.WriteLine("NOTE: the results of this test will not effect mastery of terms.");
+                        Console.Write("Press 'Enter' to begin...");
+                        Console.ReadLine();
+
+                        Test test = new Test(activeSet);
+                        test.PlaySession();
                     }
                     else if (studyOption == "5")
                     {
-                        Console.Write("Need to build");
+                        activeSet.DisplayClassification();
+                        Console.ReadLine();
                     }
-                    else if (studyOption == "6")
+                    else if (studyOption == "7")
                     {
-                        continue;
+                        if (studySetting)
+                        {
+                            activeSet.UpdateStudySetting(false);
+                        }
+                        else
+                        {
+                            activeSet.UpdateStudySetting(true);
+                        }
+                    }
+                    else
+                    {
+                        isStudyingSet = false;
                     }
                 }
-                else if (response == 2)
+                else
                 {
-                    activeSet.UploadNotes();
-                }
-                else if (response == 3)
-                {
-                    Console.Write("\nTerm: ");
-                    string term = Console.ReadLine()!;
+                    Console.WriteLine("\nSelect an option:");
+                    Console.WriteLine("1. Study");
+                    Console.WriteLine("2. Upload from notes");
+                    Console.WriteLine("3. Add term");
+                    Console.WriteLine("4. Delete term");
+                    Console.WriteLine("5. Display terms");
+                    Console.WriteLine("6. Exit");
 
-                    Console.Write("\nDefinition: ");
-                    string definition = Console.ReadLine()!;
+                    Console.Write("\nOption: ");
+                    int response = int.Parse(Console.ReadLine()!);
 
-                    activeSet.AddTerm(term, definition);
-                }
-                else if (response == 4)
-                {
-                    activeSet.DisplayTerms(1);
+                    if (response == 1)
+                    {
+                        isStudyingSet = true;
+                    }
+                    else if (response == 2)
+                    {
+                        activeSet.UploadNotes();
+                    }
+                    else if (response == 3)
+                    {
+                        Console.Write("\nTerm: ");
+                        string term = Console.ReadLine()!;
 
-                    Console.Write("Term to delete [e.g. 4]: ");
-                    int removeIndex = int.Parse(Console.ReadLine()!);
+                        Console.Write("\nDefinition: ");
+                        string definition = Console.ReadLine()!;
 
-                    activeSet.RemoveTerm(removeIndex - 1);
-                }
-                else if (response == 5)
-                {
-                    activeSet.DisplayTerms(1);
+                        activeSet.AddTerm(term, definition);
+                    }
+                    else if (response == 4)
+                    {
+                        activeSet.DisplayTerms(1);
 
-                    string wait = Console.ReadLine()!;
-                }
-                else if (response == 6)
-                {
-                    activeSet = null;
+                        Console.Write("Term to delete [e.g. 4]: ");
+                        int removeIndex = int.Parse(Console.ReadLine()!);
+
+                        activeSet.RemoveTerm(removeIndex - 1);
+                    }
+                    else if (response == 5)
+                    {
+                        activeSet.DisplayTerms(1);
+
+                        string wait = Console.ReadLine()!;
+                    }
+                    else if (response == 6)
+                    {
+                        activeSet = null;
+                    }
                 }
             }
         } while (isLearning);

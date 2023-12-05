@@ -5,19 +5,20 @@ public class Flashcard : Activity
     {
     }
 
-    public override bool StudyTerm(string term)
+    public override bool StudyTerm(string term, bool showResults=true)
     {
         (string, string) displayAnswer = base.GetDisplayAnswer(term);
 
+        Console.WriteLine("TERM:");
         Console.WriteLine(displayAnswer.Item1);
 
         Console.Write("\nPress any button to view definition");
         string pause = Console.ReadLine()!;
 
-        Console.WriteLine("");
+        Console.WriteLine("ANSWER:");
         Console.WriteLine(displayAnswer.Item2);
 
-        Console.Write("Did you get this correct? [y/n] ");
+        Console.Write("\nDid you get this correct? [y/n] ");
         string response = Console.ReadLine()!;
 
         return response.ToLower() == "y";
@@ -30,6 +31,7 @@ public class Flashcard : Activity
 
         for(int i=0; i < studyTerms.Count; i++)
         {
+            Console.Clear();
             Console.WriteLine($"{i+1}/{studyTerms.Count}\n");
 
             bool studyResult = StudyTerm(studyTerms[i]);
