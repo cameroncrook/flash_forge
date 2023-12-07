@@ -61,6 +61,12 @@ public class StudySet : Directory
 
     public void UploadNotes()
     {
+        Console.WriteLine("INSTRUCTIONS:");
+        Console.WriteLine("1. place txt file in /uploads directory.");
+        Console.WriteLine("2. Upload notes and enter full name for file (e.g. 1.3-flashcards.txt)");
+
+        Console.WriteLine("\nUse '1.3-flashcards.txt' to test it out!");
+
         Console.Write("Filename: ");
         string filename = Console.ReadLine()!;
 
@@ -78,10 +84,17 @@ public class StudySet : Directory
             {
                 if (entry.Contains(";"))
                 {
-                    string[] splitTerms = entry.Split(';');
-                    _studyItems.Add(splitTerms[0], splitTerms[1]);
+                    try
+                    {
+                        string[] splitTerms = entry.Split(';');
+                        _studyItems.Add(splitTerms[0], splitTerms[1]);
 
-                    _unkown.Add(splitTerms[0]);
+                        _unkown.Add(splitTerms[0]);
+                    }
+                    catch (ArgumentException)
+                    {
+                        continue;
+                    }
                 }
             }
         }
@@ -134,7 +147,7 @@ public class StudySet : Directory
                 {
                     _unkown.Add(result.Key);
                 }
-                else if (previousCategory == "mastered")
+                else
                 {
                     _stillLearning.Add(result.Key);
                 }

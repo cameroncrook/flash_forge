@@ -108,6 +108,7 @@ public abstract class Activity
     public (string, string) GetDisplayAnswer(string term)
     {
         string definition = _studySet.GetTermDefinition(term);
+        definition = definition.Replace(term, "______", StringComparison.OrdinalIgnoreCase);
 
         bool answerWithTerm = _studySet.GetStudySetting();
         string display = "";

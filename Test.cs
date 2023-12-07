@@ -26,7 +26,7 @@ public class Test : Activity
 
     public override Dictionary<string, bool> PlaySession()
     {
-        List<string> studyTerms = base.GetSessionTerms(2);
+        List<string> studyTerms = base.GetSessionTerms(15);
         Dictionary<string, bool> termCategoryUpdate = new Dictionary<string, bool>();
 
         for(int i=0; i < studyTerms.Count; i++)
