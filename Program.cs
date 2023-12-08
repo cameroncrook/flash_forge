@@ -107,81 +107,91 @@ class Program
             {
                 if (isStudyingSet)
                 {
-                    Console.WriteLine("\nSelect a study activity:");
-                    Console.WriteLine("1. Flashcards");
-                    Console.WriteLine("2. Write");
-                    Console.WriteLine("3. Multiple Choice");
-                    Console.WriteLine("4. Test");
-                    Console.WriteLine("5. View progress");
-                    Console.WriteLine("6. Exit");
-
-
-                    // settings
-                    bool studySetting = activeSet.GetStudySetting();
-                    string setting = "";
-                    if (studySetting)
+                    if (activeSet.GetTermCount() < 1)
                     {
-                        setting = "TERM";
+                        Console.WriteLine("No items to study in this set yet.");
+                        Console.WriteLine("Add study items to study");
+                        Console.ReadLine();
+                        isStudyingSet = false;
                     }
                     else
                     {
-                        setting = "DEFINITION";
-                    }
-                    Console.WriteLine("\nSETTINGS:");
-                    Console.WriteLine($"7. Answer with: {setting}");
+                        Console.WriteLine("\nSelect a study activity:");
+                        Console.WriteLine("1. Flashcards");
+                        Console.WriteLine("2. Write");
+                        Console.WriteLine("3. Multiple Choice");
+                        Console.WriteLine("4. Test");
+                        Console.WriteLine("5. View progress");
+                        Console.WriteLine("6. Exit");
 
-                    Console.Write("\nSelect an option: ");
-                    string studyOption = Console.ReadLine()!;
 
-                    if (studyOption == "1")
-                    {
-                        Flashcard flashcard = new Flashcard(activeSet);
-                        Dictionary<string, bool> results = flashcard.PlaySession();
-
-                        activeSet.UpdateTermClassifactions(results);
-                    }
-                    else if (studyOption == "2")
-                    {
-                        Write write = new Write(activeSet);
-                        Dictionary<string, bool> results = write.PlaySession();
-
-                        activeSet.UpdateTermClassifactions(results);
-                    }
-                    else if (studyOption == "3")
-                    {
-                        MultipleChoice multipleChoice = new MultipleChoice(activeSet);
-                        Dictionary<string, bool> results = multipleChoice.PlaySession();
-
-                        activeSet.UpdateTermClassifactions(results);
-                    }
-                    else if (studyOption == "4")
-                    {
-                        Console.WriteLine("NOTE: the results of this test will not effect mastery of terms.");
-                        Console.Write("Press 'Enter' to begin...");
-                        Console.ReadLine();
-
-                        Test test = new Test(activeSet);
-                        test.PlaySession();
-                    }
-                    else if (studyOption == "5")
-                    {
-                        activeSet.DisplayClassification();
-                        Console.ReadLine();
-                    }
-                    else if (studyOption == "7")
-                    {
+                        // settings
+                        bool studySetting = activeSet.GetStudySetting();
+                        string setting = "";
                         if (studySetting)
                         {
-                            activeSet.UpdateStudySetting(false);
+                            setting = "TERM";
                         }
                         else
                         {
-                            activeSet.UpdateStudySetting(true);
+                            setting = "DEFINITION";
                         }
-                    }
-                    else
-                    {
-                        isStudyingSet = false;
+                        Console.WriteLine("\nSETTINGS:");
+                        Console.WriteLine($"7. Answer with: {setting}");
+
+                        Console.Write("\nSelect an option: ");
+                        string studyOption = Console.ReadLine()!;
+
+                        if (studyOption == "1")
+                        {
+                            Flashcard flashcard = new Flashcard(activeSet);
+                            Dictionary<string, bool> results = flashcard.PlaySession();
+
+                            activeSet.UpdateTermClassifactions(results);
+                        }
+                        else if (studyOption == "2")
+                        {
+                            Write write = new Write(activeSet);
+                            Dictionary<string, bool> results = write.PlaySession();
+
+                            activeSet.UpdateTermClassifactions(results);
+                        }
+                        else if (studyOption == "3")
+                        {
+                            MultipleChoice multipleChoice = new MultipleChoice(activeSet);
+                            Dictionary<string, bool> results = multipleChoice.PlaySession();
+
+                            activeSet.UpdateTermClassifactions(results);
+                        }
+                        else if (studyOption == "4")
+                        {
+                            Console.WriteLine("NOTE: the results of this test will not effect mastery of terms.");
+                            Console.Write("Press 'Enter' to begin...");
+                            Console.ReadLine();
+
+                            Test test = new Test(activeSet);
+                            test.PlaySession();
+                        }
+                        else if (studyOption == "5")
+                        {
+                            activeSet.DisplayClassification();
+                            Console.ReadLine();
+                        }
+                        else if (studyOption == "7")
+                        {
+                            if (studySetting)
+                            {
+                                activeSet.UpdateStudySetting(false);
+                            }
+                            else
+                            {
+                                activeSet.UpdateStudySetting(true);
+                            }
+                        }
+                        else
+                        {
+                            isStudyingSet = false;
+                        }
                     }
                 }
                 else

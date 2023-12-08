@@ -187,6 +187,10 @@ public class StudySet : Directory
 
         for(int i=0; i < quantity; i++)
         {
+            if (keys.Count < 1)
+            {
+                keys = dictKeys.ToList();
+            }
             Random random = new Random();
 
             int index = random.Next(keys.Count);
@@ -210,5 +214,12 @@ public class StudySet : Directory
         Console.WriteLine(string.Join(" | ", _mastered));
 
         return;
+    }
+
+    public int GetTermCount()
+    {
+        ICollection<string> dictKeys = _studyItems.Keys;
+
+        return dictKeys.Count;
     }
 }
