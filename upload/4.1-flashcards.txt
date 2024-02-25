@@ -1,0 +1,39 @@
+tracert/traceroute;Determines the route that packets take to reach a destination. Usage: Useful for diagnosing network connectivity issues and identifying the routers through which data passes.
+nslookup/dig;DNS query tools for querying domain name servers to obtain DNS records. Usage: Helps in troubleshooting DNS issues, resolving domain names to IP addresses, and obtaining information about domain names.
+ipconfig/ifconfig;Displays the configuration of network interfaces on a system. Usage: Provides information about IP addresses, subnet masks, and other network configuration details.
+nmap;Network scanning tool for discovering hosts and services on a computer network. Usage: Used for security assessments to identify open ports, services running, and potential vulnerabilities.
+ping/pathping;Tests reachability of a host on an Internet Protocol (IP) network. Usage: Diagnoses network connectivity issues and measures the round-trip time for messages to travel from the source to the destination.
+hping;Command-line oriented TCP/IP packet assembler/analyzer. Usage: Used for firewall testing, advanced port scanning, network testing, and more.
+netstat;Displays active network connections, listening ports, and other network-related information. Usage: Helps in monitoring network activities and troubleshooting network issues.
+netcat;Network utility for reading from and writing to network connections using TCP or UDP. Usage: Used for various network-related tasks, such as port scanning, transferring files, and creating backdoors.
+IP scanners;Tools that scan a range of IP addresses to discover active hosts. Usage: Commonly used in network reconnaissance to identify live hosts.
+arp;Resolves IP addresses to MAC addresses on a local network. Usage: Maps IP addresses to physical hardware addresses, essential for communication on a local network.
+route;Displays and modifies the IP routing table. Usage: Allows you to view and manipulate the routing table, determining the path data takes to reach a destination.
+curl;Command-line tool for making HTTP requests. Usage: Retrieves data from or sends data to a server, often used in scripting and for testing web applications.
+theHarvester;Gathers information from public sources about a target domain. Usage: Useful for reconnaissance to collect email addresses, subdomains, and other information.
+sn1per;Automated penetration testing framework. Usage: Streamlines the process of information gathering, vulnerability scanning, and exploitation.
+scanless;Command-line utility for using public service to perform port scans. Usage: Allows you to conduct port scans through third-party services to avoid direct involvement.
+dnsenum;Multithreaded perl script to enumerate DNS information. Usage: Aids in gathering information about a domain's DNS configuration.
+Nessus;Vulnerability scanner used to detect potential security threats. Usage: Scans for vulnerabilities in network services, operating systems, and applications.
+Cuckoo;Open-source automated malware analysis system. Usage: Used for analyzing suspicious files and providing detailed reports on their behavior.
+head;Displays the beginning of a text file. Usage: Useful for quickly viewing the first few lines of a file.
+tail;Displays the end of a text file. Usage: Useful for monitoring log files or viewing the last few lines of a file.
+cat;Concatenates and displays the content of files. Usage: Used to display the contents of one or more files, or to combine them.
+grep;Searches for a specific pattern or regular expression in a file or stream of text. Usage: Useful for pattern matching and filtering text.
+chmod;Changes the permissions of a file or directory. Usage: Used to control access permissions for files and directories in Unix-like operating systems.
+logger;Logs messages to the system log (syslog). Usage: Used to generate log messages from the command line, scripts, or programs.
+SSH;Provides a secure, encrypted communication channel over an unsecured network. Usage: Used for remote administration, file transfer, and tunneling, allowing secure access to a remote system.
+PowerShell;A task automation framework and shell designed for system administration. Usage: Used for scripting, automation, and managing Windows environments. PowerShell commands (cmdlets) allow administrators to perform various tasks.
+Python;A high-level, general-purpose programming language known for its readability and versatility. Usage: Widely used for scripting, automation, web development, data analysis, and more. It has a large ecosystem of libraries and frameworks.
+OpenSSL;A toolkit that implements the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols. Usage: Used for secure communication over a computer network. OpenSSL provides tools for creating and managing SSL/TLS certificates, as well as cryptographic functions.
+Tcpreplay;Used for the replay of captured network traffic. This is particularly useful for testing and validating network equipment and security systems using real-world traffic patterns.
+Tcpdump;A command-line packet analyzer that captures and displays network traffic. It's a versatile tool for monitoring and troubleshooting network issues, and it can filter and capture packets based on various criteria.
+Wireshark;A powerful and widely-used network protocol analyzer with a graphical user interface. It allows users to capture, view, and analyze the data being sent and received over a network in real-time. Wireshark is invaluable for diagnosing network problems, understanding protocols, and inspecting packet-level details.
+dd;A versatile command-line tool used for creating bit-by-bit copies of storage devices, commonly employed in forensics for imaging and preserving data.
+Memdump;Captures the contents of a computer's physical memory, allowing forensics analysts to examine the volatile memory for evidence that may not be stored on disk.
+WinHex;A hexadecimal editor and disk editor used for viewing and editing binary files, disks, and RAM. It is helpful in forensics for low-level analysis of data.
+FTK imager;Specifically designed for forensic imaging, it captures and analyzes data from storage devices while preserving the original data for examination.
+Autopsy;An open-source digital forensics platform that provides a user-friendly interface for investigators to analyze disk images, mobile devices, and network captures during digital forensic investigations.
+Exploitation frameworks;Tools and frameworks used for identifying and exploiting vulnerabilities in computer systems. They are often employed by security professionals to assess the security posture of a system or network.
+Password crackers;Programs designed to recover passwords by attempting to break the encryption or hash protecting them. These tools are used in situations where password recovery is necessary or in security testing scenarios to evaluate password strength.
+Data sanitization;The process of modifying or removing sensitive information from a dataset to ensure that it can be safely shared or released. This is crucial for protecting privacy and complying with data protection regulations.

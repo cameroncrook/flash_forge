@@ -11,8 +11,8 @@ public class StudySet : Directory
     private List<string> _unkown;
     private bool _answerWithTerm;
 
-    public StudySet(string name, Folder parent)
-        : base(name, parent)
+    public StudySet(string name, string parentId)
+        : base(name, parentId)
     {
         _studyItems = new Dictionary<string, string>();
         _mastered = new List<string>();

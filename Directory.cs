@@ -1,21 +1,50 @@
 public class Directory
 {
     private string _name;
-    private Folder _parentDirectory;
+    private string? _parentId;
 
-    public Directory(string name, Folder parent)
+    public Directory(string name, string? parentId)
     {
         _name = name;
-        _parentDirectory = parent;
+
+        if (parentId == "")
+        {
+            _parentId = null;
+        }
+        else
+        {
+            _parentId = parentId;
+        }
     }
 
-    public string GetName()
+    public void setAttributes(string name, string parentId)
     {
-        return _name;
+        _name = name;
+        _parentId = parentId;
+
+        return;
     }
 
-    public Folder GetParent()
+    public string? GetParentId()
     {
-        return _parentDirectory;
+        return _parentId;
     }
+
+    public void DisplayData()
+    {
+        Console.WriteLine(_name);
+        Console.WriteLine(_parentId);
+
+        return;
+    }
+
+    // public string GetName()
+    // {
+    //     return _name;
+    // }
+
+    // public Folder GetParent()
+    // {
+    //     return _parentDirectory;
+    // }
 }
