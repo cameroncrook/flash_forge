@@ -6,7 +6,7 @@ A C# study application that integrates with a Firestore database to store flash 
 
 There are many study applications available. My personal favorite is Quizlet but they can be a little pricey. The purpose of this application is to offer an alternative to Quizlet and seeks to implement the essential functions of a solid study app.
 
-[Software Demo Video](https://youtu.be/CyaYALgFUWE?si=9pfrLYkfAZPtWXza)
+[Software Demo Video](https://youtu.be/HqeTgehSgZw)
 
 # Cloud Database
 
