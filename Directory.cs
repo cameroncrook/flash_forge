@@ -30,10 +30,9 @@ public class Directory
         return _parentId;
     }
 
-    public void DisplayData()
+    public void DisplayName()
     {
         Console.WriteLine(_name);
-        Console.WriteLine(_parentId);
 
         return;
     }

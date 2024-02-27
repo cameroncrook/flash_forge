@@ -104,8 +104,36 @@ public class User
         return folder;
     }
 
-    // public async Task<Tuple<Dictionary<string, string>, Dictionary<string, string>>> GetDirectoryContents(string folderId)
-    // {
-        
-    // }
+    public async Task<List<Dictionary<string, string>>> GetDirectoryContents(string folderId)
+    {
+        List<Dictionary<string, string>> children = new List<Dictionary<string, string>>();
+
+        Dictionary<string, string> folders = await _db.GetChildrenFolders(folderId);
+
+        foreach (KeyValuePair<string, string> folder in folders)
+        {
+            Dictionary<string, string> folderData = new Dictionary<string, string> {
+                {"name", folder.Key},
+                {"id", folder.Value},
+                {"type", "folder"}
+            };
+
+            children.Add(folderData);
+        }
+
+        Dictionary<string, string> sets = await _db.GetChildSets(folderId);
+
+        foreach (KeyValuePair<string, string> set in sets)
+        {
+            Dictionary<string, string> setData = new Dictionary<string, string> {
+                {"name", set.Key},
+                {"id", set.Value},
+                {"type", "set"}
+            };
+
+            children.Add(setData);
+        }
+
+        return children;
+    }
 }

@@ -34,7 +34,7 @@ class Program
             Console.Clear();
 
             // PWD(activeDirectory, activeSet);
-            activeDirectory.DisplayData();
+            activeDirectory.DisplayName();
             if (activeSet == null)
             {
                 Console.WriteLine("\nSelect an option:");
@@ -44,7 +44,8 @@ class Program
                 Console.WriteLine("4. Delete study set");
                 Console.WriteLine("5. Exit");
 
-                // activeDirectory.DisplayContents(6);
+                List<Dictionary<string, string>> children = await user.GetDirectoryContents(activeDirectory.GetFolderId());
+                DisplayChildren(children, 6);
 
                 Console.Write("\nOption: ");
                 int response = int.Parse(Console.ReadLine()!);
@@ -63,8 +64,8 @@ class Program
                     //     activeDirectory = newFolder;
                     // }
                 }
-        //         else if (response == 2)
-        //         {
+                else if (response == 2)
+                {
         //             Console.Write("Set name: ");
         //             string setName = Console.ReadLine()!;
 
@@ -75,7 +76,7 @@ class Program
 
         //                 activeSet = newSet;
         //             }   
-        //         }
+                }
         //         else if (response == 3)
         //         {
         //             activeDirectory.DisplayDirectories();
@@ -266,6 +267,18 @@ class Program
         //     }
         } while (isLearning);
     }
+
+    static void DisplayChildren(List<Dictionary<string, string>> children, int startingIndex)
+    {
+        int index = startingIndex;
+        foreach (Dictionary<string, string> child in children)
+        {
+            Console.WriteLine($"{index}. {child["name"]}");
+
+            index++;
+        }
+    }
+
     // static void PWD(Folder activeDirectory, StudySet activeSet)
     // {
     //     List<string> path = new List<string>();
